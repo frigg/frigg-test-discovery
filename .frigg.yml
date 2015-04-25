@@ -1,0 +1,9 @@
+tasks:
+ - tox -e py34
+ - tox -e flake8
+ - tox -e isort
+ - coverage xml
+
+coverage:
+  path: coverage.xml
+  parser: python
