@@ -10,11 +10,11 @@ def detect_test_tasks(files):
     if 'Makefile' in files:
         return ['make test']
     if 'tox.ini' in files:
-        return ['tox', 'flake8']
+        return ['tox']
     if 'setup.py' in files:
-        return ['python setup.py test', 'flake8']
+        return ['python setup.py test']
     if 'manage.py' in files:
-        return ['python manage.py test', 'flake8']
+        return ['python manage.py test']
     if 'package.json' in files:
         return ['npm install', 'npm test']
     if 'build.sbt' in files:
