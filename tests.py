@@ -18,15 +18,15 @@ class DetectTestRunnerTests(unittest.TestCase):
 
     def test_detect_tox(self):
         self.files = self.files[:len(self.files) - 1]
-        self.assertEqual(detect_test_tasks(self.files), ['tox', 'flake8'])
+        self.assertEqual(detect_test_tasks(self.files), ['tox'])
 
     def test_detect_python(self):
         self.files = self.files[:len(self.files) - 2]
-        self.assertEqual(detect_test_tasks(self.files), ['python setup.py test', 'flake8'])
+        self.assertEqual(detect_test_tasks(self.files), ['python setup.py test'])
 
     def test_detect_django(self):
         self.files = self.files[:len(self.files) - 3]
-        self.assertEqual(detect_test_tasks(self.files), ['python manage.py test', 'flake8'])
+        self.assertEqual(detect_test_tasks(self.files), ['python manage.py test'])
 
     def test_detect_npm(self):
         self.files = self.files[:len(self.files) - 4]
