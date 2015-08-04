@@ -1,4 +1,5 @@
 # -*- encoding: utf8 -*-
+import sys
 from setuptools import setup
 
 import frigg_test_discovery
@@ -12,6 +13,12 @@ def _read_long_description():
         return None
 
 version = frigg_test_discovery.__version__
+
+try:
+    from semantic_release import setup_hook
+    setup_hook(sys.argv)
+except ImportError:
+    pass
 
 
 setup(
