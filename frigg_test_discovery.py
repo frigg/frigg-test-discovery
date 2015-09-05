@@ -11,6 +11,8 @@ def detect_test_tasks(files):
         return ['make test']
     if 'tox.ini' in files:
         return ['tox']
+    if 'pom.xml' in files:
+        return ['mvn test']
     if 'setup.py' in files:
         return ['python setup.py test']
     if 'manage.py' in files:
