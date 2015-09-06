@@ -11,6 +11,8 @@ def detect_test_tasks(files):
         return ['make test']
     if 'tox.ini' in files:
         return ['tox']
+    if 'Rakefile' in files:
+        return ['rake test']
     if 'pom.xml' in files:
         return ['mvn -B test']
     if 'setup.py' in files:
