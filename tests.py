@@ -20,55 +20,55 @@ def test_detect_make(files):
 
 
 def test_detect_tox(files):
-    files = files[:len(files) - 1]
+    files = files[:files.index('tox.ini') + 1]
     assert detect_test_tasks(files) == ['tox']
 
 
 def test_detect_rake(files):
-    files = files[:len(files) - 2]
+    files = files[:files.index('Rakefile') + 1]
     assert detect_test_tasks(files) == ['rake test']
 
 
 def test_detect_maven(files):
-    files = files[:len(files) - 3]
+    files = files[:files.index('pom.xml') + 1]
     assert detect_test_tasks(files) == ['mvn -B test']
 
 
 def test_detect_python(files):
-    files = files[:len(files) - 4]
+    files = files[:files.index('setup.py') + 1]
     assert detect_test_tasks(files) == ['python setup.py test']
 
 
 def test_detect_django(files):
-    files = files[:len(files) - 5]
+    files = files[:files.index('manage.py') + 1]
     assert detect_test_tasks(files) == ['python manage.py test']
 
 
 def test_detect_grunt(files):
-    files = files[:len(files) - 6]
+    files = files[:files.index('Gruntfile.js') + 1]
     assert detect_test_tasks(files) == ['grunt test']
 
 
 def test_detect_gulp(files):
-    files = files[:len(files) - 7]
+    files = files[:files.index('gulpfile.js') + 1]
     assert detect_test_tasks(files) == ['gulp test']
 
 
 def test_detect_npm(files):
-    files = files[:len(files) - 8]
+    files = files[:files.index('package.json') + 1]
     assert detect_test_tasks(files) == ['npm install', 'npm test']
 
 
 def test_detect_sbt(files):
-    files = files[:len(files) - 9]
+    files = files[:files.index('build.sbt') + 1]
     assert detect_test_tasks(files) == ['sbt test']
 
 
 def test_detect_cargo(files):
-    files = files[:len(files) - 10]
+    files = files[:files.index('Cargo.toml') + 1]
     assert detect_test_tasks(files) == ['cargo test']
 
 
 def test_detect_jekyll(files):
-    files = files[:len(files) - 11]
+    files = files[:files.index('_config.yml') + 1]
     assert detect_test_tasks(files) == ['jekyll build']
