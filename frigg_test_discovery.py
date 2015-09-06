@@ -21,6 +21,8 @@ def detect_test_tasks(files):
         return ['python manage.py test']
     if 'Gruntfile.js' in files:
         return['grunt test']
+    if 'gulpfile.js' in files:
+        return['gulp test']
     if 'package.json' in files:
         return ['npm install', 'npm test']
     if 'build.sbt' in files:
