@@ -1,7 +1,8 @@
 # -*- coding: utf8 -*-
+import mock
 import pytest
 
-from frigg_test_discovery import detect_test_tasks
+from frigg_test_discovery import detect_test_tasks, detect_tox_environments
 
 
 @pytest.fixture
@@ -72,3 +73,12 @@ def test_detect_cargo(files):
 def test_detect_jekyll(files):
     files = files[:files.index('_config.yml') + 1]
     assert detect_test_tasks(files) == ['jekyll build']
+
+
+def test_detect_tox_environments():
+    runner = mock.MagicMock()
+    runner.configure_mock(run=lambda *a: 'flake8\n')
+    assert detect_tox_environments(runner, '') == ['flake8']
+
+    runner.configure_mock(run=lambda *a: 'flake8\nisort\ntests\n')
+    assert detect_tox_environments(runner, '') == ['flake8', 'isort', 'tests']
