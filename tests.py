@@ -6,7 +6,7 @@ from frigg_test_discovery import detect_test_tasks
 
 @pytest.fixture
 def files():
-    return ['_config.yml', 'Cargo.toml', 'build.sbt', 'package.json', 'Gruntfile.js',
+    return ['_config.yml', 'Cargo.toml', 'build.sbt', 'package.json', 'gulpfile.js', 'Gruntfile.js',
             'manage.py', 'setup.py', 'pom.xml', 'Rakefile', 'tox.ini', 'Makefile']
 
 
@@ -49,21 +49,26 @@ def test_detect_grunt(files):
     assert detect_test_tasks(files) == ['grunt test']
 
 
-def test_detect_npm(files):
+def test_detect_gulp(files):
     files = files[:len(files) - 7]
+    assert detect_test_tasks(files) == ['gulp test']
+
+
+def test_detect_npm(files):
+    files = files[:len(files) - 8]
     assert detect_test_tasks(files) == ['npm install', 'npm test']
 
 
 def test_detect_sbt(files):
-    files = files[:len(files) - 8]
+    files = files[:len(files) - 9]
     assert detect_test_tasks(files) == ['sbt test']
 
 
 def test_detect_cargo(files):
-    files = files[:len(files) - 9]
+    files = files[:len(files) - 10]
     assert detect_test_tasks(files) == ['cargo test']
 
 
 def test_detect_jekyll(files):
-    files = files[:len(files) - 10]
+    files = files[:len(files) - 11]
     assert detect_test_tasks(files) == ['jekyll build']
