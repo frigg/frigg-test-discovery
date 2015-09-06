@@ -32,3 +32,8 @@ def detect_test_tasks(files):
     if '_config.yml' in files:
         return ['jekyll build']
     return []
+
+
+def detect_tox_environments(runner, working_directory):
+    result = runner.run('tox -l', working_directory)
+    return result.split()
