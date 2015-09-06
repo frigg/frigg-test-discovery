@@ -3,7 +3,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-__version__ = '1.2.0'
+__version__ = '1.3.0'
 
 
 def detect_test_tasks(files):
