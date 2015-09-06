@@ -22,7 +22,7 @@ class DetectTestRunnerTests(unittest.TestCase):
 
     def test_detect_maven(self):
         self.files = self.files[:len(self.files) - 2]
-        self.assertEqual(detect_test_tasks(self.files), ['mvn test'])
+        self.assertEqual(detect_test_tasks(self.files), ['mvn -B test'])
 
     def test_detect_python(self):
         self.files = self.files[:len(self.files) - 3]
