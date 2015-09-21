@@ -36,4 +36,4 @@ def detect_test_tasks(files):
 
 def detect_tox_environments(runner, working_directory):
     result = runner.run('tox -l', working_directory)
-    return result.split()
+    return result.out.split()

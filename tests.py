@@ -77,8 +77,10 @@ def test_detect_jekyll(files):
 
 def test_detect_tox_environments():
     runner = mock.MagicMock()
-    runner.configure_mock(run=lambda *a: 'flake8\n')
+    output = mock.MagicMock()
+    output.configure_mock(out='flake8\n')
+    runner.configure_mock(run=lambda *a: output)
     assert detect_tox_environments(runner, '') == ['flake8']
 
-    runner.configure_mock(run=lambda *a: 'flake8\nisort\ntests\n')
+    output.configure_mock(out='flake8\nisort\ntests\n')
     assert detect_tox_environments(runner, '') == ['flake8', 'isort', 'tests']
